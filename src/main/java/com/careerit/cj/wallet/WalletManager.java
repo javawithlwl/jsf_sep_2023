@@ -26,7 +26,6 @@ public class WalletManager {
                     mobile = sc.next();
                     System.out.println("Enter the amount :");
                     amount = sc.nextDouble();
-                    //calling createWallet method
                     walletService.createWallet(mobile,amount);
                     break;
                 case 2:
