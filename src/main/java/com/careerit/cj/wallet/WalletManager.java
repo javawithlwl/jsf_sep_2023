@@ -26,7 +26,7 @@ public class WalletManager {
                     mobile = sc.next();
                     System.out.println("Enter the amount :");
                     amount = sc.nextDouble();
-                    // TODO : call createWallet method
+                    walletService.createAccount(mobile,amount);
                     break;
                 case 2:
                     System.out.println("Enter the from mobile number :");
