@@ -3,6 +3,7 @@ package com.careerit.cj.day26.iplstats;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class IplStatsServiceImpl implements IplStatsService{
 
@@ -24,7 +25,10 @@ public class IplStatsServiceImpl implements IplStatsService{
 
     @Override
     public List<String> playersByTeam(String teamName) {
-        return null;
+        return players.stream()
+                .filter(p->p.getTeamName().equals(teamName))
+                .map(Player::getName)
+                .toList();
     }
 
     @Override
