@@ -10,8 +10,16 @@ import java.util.List;
 enum PaymentMethod{
     CREDIT_CARD,UPI,AUTO_DEBIT
 }
-record PaymentInitiator(String accNumber,  PaymentMethod paymentMethod){}
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+class PaymentInitiator{
+        private String accNumber;
+        private PaymentMethod paymentMethod;
+}
 record AccountPaymentProfile(String accNumber, String name, String city){}
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,9 +31,9 @@ class Payment{
 public class PaymentExample {
 
     public static void main(String[] args) {
-        PaymentInitiator initiator1 = new PaymentInitiator("SB1001", PaymentMethod.AUTO_DEBIT);
-        PaymentInitiator initiator2 = new PaymentInitiator("SB1002", PaymentMethod.UPI);
-        PaymentInitiator initiator3 = new PaymentInitiator("SB1003", PaymentMethod.CREDIT_CARD);
+        PaymentInitiator initiator1 = new PaymentInitiator("SB1001", com.careerit.cj.day27.PaymentMethod.AUTO_DEBIT);
+        PaymentInitiator initiator2 = new PaymentInitiator("SB1002", com.careerit.cj.day27.PaymentMethod.UPI);
+        PaymentInitiator initiator3 = new PaymentInitiator("SB1003", com.careerit.cj.day27.PaymentMethod.CREDIT_CARD);
 
         List<PaymentInitiator> initiators = List.of(initiator1,initiator2,initiator3);
 
@@ -38,7 +46,7 @@ public class PaymentExample {
         Payment payment1 = new Payment("SB1001", 5000);
 
         PaymentInitiator paymentInitiator = initiators.stream()
-                                          .filter(e->e.accNumber().equals(payment1.getAccNumber()))
+                                          .filter(e->e.getAccNumber().equals(payment1.getAccNumber()))
                                           .findAny()
                                           .orElseThrow();
         AccountPaymentProfile accountPaymentProfile = profiles.stream()
@@ -54,7 +62,7 @@ public class PaymentExample {
 
     private static void makePayment(Payment payment1, PaymentInitiator paymentInitiator, AccountPaymentProfile accountPaymentProfile) {
         System.out.println("Payment is initiated for :"+payment1.getAccNumber());
-        System.out.println("Payment is initiated by :"+paymentInitiator.paymentMethod());
+        System.out.println("Payment is initiated by :"+paymentInitiator.getPaymentMethod());
         System.out.println("Payment is made by :"+accountPaymentProfile.name());
         System.out.println("Payment is made for :"+payment1.getAmount());
     }
