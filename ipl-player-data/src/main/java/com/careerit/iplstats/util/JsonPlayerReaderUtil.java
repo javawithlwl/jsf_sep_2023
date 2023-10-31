@@ -1,4 +1,4 @@
-package com.careerit.iplstats.utill;
+package com.careerit.iplstats.util;
 
 import com.careerit.iplstats.domain.Player;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -13,7 +13,7 @@ public final class JsonPlayerReaderUtil {
     }
 
     public static List<Player> loadPlayers() {
-        String fileName = "/player.json";
+        String fileName = "/players_data.json";
         ObjectMapper mapper = new ObjectMapper();
         List<Player> list = new ArrayList<>();
         try {
@@ -25,7 +25,6 @@ public final class JsonPlayerReaderUtil {
         }
         return list;
     }
-
 }
 
 

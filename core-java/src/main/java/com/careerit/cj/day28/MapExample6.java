@@ -1,7 +1,7 @@
 package com.careerit.cj.day28;
 
 import com.careerit.iplstats.domain.Player;
-import com.careerit.iplstats.utill.JsonPlayerReaderUtil;
+import com.careerit.iplstats.util.JsonPlayerReaderUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ public class MapExample6 {
     public static void main(String[] args) {
 
         List<Player> players = JsonPlayerReaderUtil.loadPlayers();
-
+        System.out.println(players.size());
         // Get team wise player details
 
         Map<String, List<Player>> playerDetailsMap = new HashMap<>();
