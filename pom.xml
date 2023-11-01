@@ -11,6 +11,8 @@
     <modules>
         <module>ipl-player-data</module>
         <module>core-java</module>
+        <module>learning_jdbc</module>
+        <module>learning_design_patterns</module>
     </modules>
 
     <properties>
