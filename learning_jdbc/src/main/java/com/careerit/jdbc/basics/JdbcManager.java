@@ -27,13 +27,14 @@ public class JdbcManager {
     }
 
     public static List<Player> getMaxPaidPlayers(){
-        String sql = "select id,name,role,country,team,amount from player where amount=(select max(amount) from player)";
+        String sql = "select id,name,role,country,team,amount from player where amount=(select max(amount) from player);";
         List<Player> players = new ArrayList<>();
         Connection con = null;
         Statement st = null;
         ResultSet rs = null;
+        ConnectionUtil util = ConnectionUtil.getInstance();
         try {
-            con = ConnectionUtil.getConnection();
+            con = util.getConnection();
             st = con.createStatement();
             rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -57,19 +58,20 @@ public class JdbcManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally{
-           ConnectionUtil.close(rs,st,con);
+           util.close(rs,st,con);
         }
         return players;
     }
 
     public static List<Player> getPlayers() {
-        String sql = "select id,name,role,amount,country,team from player";
+        String sql = "select id,name,role,amount,country,team from player;";
         Connection con = null;
         Statement st = null;
         ResultSet rs = null;
         List<Player> players = new ArrayList<>();
+        ConnectionUtil util = ConnectionUtil.getInstance();
         try {
-            con = ConnectionUtil.getConnection();
+            con = util.getConnection();
             st = con.createStatement();
             rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -93,7 +95,7 @@ public class JdbcManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally{
-           ConnectionUtil.close(rs,st,con);
+           util.close(rs,st,con);
         }
         return players;
 
@@ -105,8 +107,9 @@ public class JdbcManager {
         PreparedStatement st = null;
         ResultSet rs = null;
         TeamStatsDto teamStatsDto = null;
+        ConnectionUtil util = ConnectionUtil.getInstance();
         try {
-            con = ConnectionUtil.getConnection();
+            con = util.getConnection();
             st = con.prepareStatement(sql);
             st.setString(1,teamName);
             rs = st.executeQuery();
@@ -130,7 +133,7 @@ public class JdbcManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally{
-            ConnectionUtil.close(rs,st,con);
+            util.close(rs,st,con);
         }
         return teamStatsDto;
 
@@ -143,8 +146,9 @@ public class JdbcManager {
         PreparedStatement st = null;
         ResultSet rs = null;
         List<Player> players = new ArrayList<>();
+        ConnectionUtil util = ConnectionUtil.getInstance();
         try {
-            con = ConnectionUtil.getConnection();
+            con = util.getConnection();
             st = con.prepareStatement(sql);
             st.setString(1,teamName);
             st.setString(2,roleName);
@@ -171,7 +175,7 @@ public class JdbcManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally{
-            ConnectionUtil.close(rs,st,con);
+            util.close(rs,st,con);
         }
         return players;
 

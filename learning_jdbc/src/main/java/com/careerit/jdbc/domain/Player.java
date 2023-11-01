@@ -16,8 +16,5 @@ public class Player {
     private double amount;
     private String team;
 }
-// creational patterns
-// 1. Singleton
-// 2. Factory
-// 3. Builder
+
 
