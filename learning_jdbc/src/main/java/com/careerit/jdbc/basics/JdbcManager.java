@@ -8,10 +8,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+record Student(String name, int age) {
+}
+
 public class JdbcManager {
 
     public static void main(String[] args) {
-        List<Player> players = getPlayers();
+       /* List<Player> players = getPlayers();
         System.out.println(players.size());
         // Max paid players
         List<Player> maxPaidPlayers = getMaxPaidPlayers();
@@ -23,10 +26,85 @@ public class JdbcManager {
 
         // Players by team,role,country
         List<Player> playersByTeamRoleCountry = getPlayers("RCB", "Batsman", "India");
-        playersByTeamRoleCountry.forEach(System.out::println);
+        playersByTeamRoleCountry.forEach(System.out::println);*/
+        /* createTable();*/
+        /* insertData();*/
+        /* alterTable();*/
+        /*addMultipleRecords();*/
+       /* updateAge();*/
+
+        List<Student> students = getStudentDetails();
+        System.out.println(students.size());
+
     }
 
-    public static List<Player> getMaxPaidPlayers(){
+    private static List<Student> getStudentDetails(){
+        String sql = "select name,age from sample_1;";
+        Connection con = null;
+        Statement st = null;
+        ResultSet rs = null;
+        List<Student> students = new ArrayList<>();
+        ConnectionUtil util = ConnectionUtil.getInstance();
+        try {
+            con = util.getConnection();
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String name = rs.getString("name");
+                int age = rs.getInt("age");
+                Student student = new Student(name, age);
+                students.add(student);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            util.close(rs,st,con);
+        }
+        return students;
+    }
+
+    private static void updateAge(){
+        String sql = "update sample_1 set age = age + 1 where age > 20";
+        Connection con = null;
+        Statement st = null;
+        ConnectionUtil util = ConnectionUtil.getInstance();
+        try {
+            con = util.getConnection();
+            st = con.createStatement();
+            int count = st.executeUpdate(sql);
+            System.out.println(count + " record(s) updated successfully ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.close(st, con);
+        }
+    }
+
+    private static void addMultipleRecords() {
+        List<Student> students = List.of(new Student("Krish", 21),
+                new Student("Rakesh", 22),
+                new Student("Charan", 23));
+
+        String sql = "insert into sample_1(name,age) values(?,?);";
+        Connection con = null;
+        PreparedStatement pst = null;
+        ConnectionUtil util = ConnectionUtil.getInstance();
+        try {
+            con = util.getConnection();
+            pst = con.prepareStatement(sql);
+            for (Student student : students) {
+                pst.setString(1, student.name());
+                pst.setInt(2, student.age());
+                pst.addBatch();
+            }
+            int[] arr = pst.executeBatch();
+            System.out.println("Total records inserted :" + arr.length);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Player> getMaxPaidPlayers() {
         String sql = "select id,name,role,country,team,amount from player where amount=(select max(amount) from player);";
         List<Player> players = new ArrayList<>();
         Connection con = null;
@@ -57,8 +135,8 @@ public class JdbcManager {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
-           util.close(rs,st,con);
+        } finally {
+            util.close(rs, st, con);
         }
         return players;
     }
@@ -94,14 +172,14 @@ public class JdbcManager {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
-           util.close(rs,st,con);
+        } finally {
+            util.close(rs, st, con);
         }
         return players;
 
     }
 
-    public static TeamStatsDto getTeamStats(String teamName){
+    public static TeamStatsDto getTeamStats(String teamName) {
         String sql = "select team,count(*) as count,sum(amount) as total,max(amount) as max,min(amount) as min,avg(amount) as avg from player where team=? group by team;";
         Connection con = null;
         PreparedStatement st = null;
@@ -111,7 +189,7 @@ public class JdbcManager {
         try {
             con = util.getConnection();
             st = con.prepareStatement(sql);
-            st.setString(1,teamName);
+            st.setString(1, teamName);
             rs = st.executeQuery();
             while (rs.next()) {
                 String team = rs.getString("team");
@@ -132,15 +210,15 @@ public class JdbcManager {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
-            util.close(rs,st,con);
+        } finally {
+            util.close(rs, st, con);
         }
         return teamStatsDto;
 
 
     }
 
-    public static List<Player> getPlayers(String teamName,String roleName,String countryName) {
+    public static List<Player> getPlayers(String teamName, String roleName, String countryName) {
         String sql = "select * from player where team=? and role=? and country=?;";
         Connection con = null;
         PreparedStatement st = null;
@@ -150,9 +228,9 @@ public class JdbcManager {
         try {
             con = util.getConnection();
             st = con.prepareStatement(sql);
-            st.setString(1,teamName);
-            st.setString(2,roleName);
-            st.setString(3,countryName);
+            st.setString(1, teamName);
+            st.setString(2, roleName);
+            st.setString(3, countryName);
             rs = st.executeQuery();
             while (rs.next()) {
                 long id = rs.getLong("id");
@@ -174,10 +252,68 @@ public class JdbcManager {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
-            util.close(rs,st,con);
+        } finally {
+            util.close(rs, st, con);
         }
         return players;
 
     }
+
+    private static void createTable() {
+        String sql = "create table sample_1(id serial,name varchar(50));";
+        Connection con = null;
+        Statement st = null;
+        ConnectionUtil util = ConnectionUtil.getInstance();
+        try {
+            con = util.getConnection();
+            st = con.createStatement();
+            st.execute(sql);
+            System.out.println("Table created successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.close(st, con);
+        }
+    }
+
+
+    private static void insertData() {
+        String sql = "insert into sample_1(name) values(?);";
+        Connection con = null;
+        PreparedStatement st = null;
+        ConnectionUtil util = ConnectionUtil.getInstance();
+        try {
+            con = util.getConnection();
+            st = con.prepareStatement(sql);
+            st.setString(1, "Krish");
+            int count = st.executeUpdate();
+            System.out.println(count + " record(s) inserted successfully ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.close(st, con);
+        }
+    }
+
+    private static void alterTable() {
+        String sql = "alter table sample_1 add column age int default 20;";
+        Connection con = null;
+        Statement st = null;
+        ConnectionUtil util = ConnectionUtil.getInstance();
+        try {
+            con = util.getConnection();
+            st = con.createStatement();
+            st.execute(sql);
+            System.out.println("Altered table successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.close(st, con);
+        }
+    }
+
 }
+
+// execute       => void          ddl (create,alter,drop,truncate)
+// executeUpdate => int           dml (insert,update,delete)
+// executeQuery  => ResultSet     select

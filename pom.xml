@@ -13,6 +13,7 @@
         <module>core-java</module>
         <module>learning_jdbc</module>
         <module>learning_design_patterns</module>
+        <module>ipl-stats-jdbc</module>
     </modules>
 
     <properties>

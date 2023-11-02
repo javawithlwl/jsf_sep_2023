@@ -1,4 +1,4 @@
-package com.careerit.jdbc.util;
+package com.careerit.iplstats.util;
 
 import java.sql.*;
 import java.util.Properties;
