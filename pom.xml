@@ -14,6 +14,7 @@
         <module>learning_jdbc</module>
         <module>learning_design_patterns</module>
         <module>ipl-stats-jdbc</module>
+        <module>learning-junit</module>
     </modules>
 
     <properties>
