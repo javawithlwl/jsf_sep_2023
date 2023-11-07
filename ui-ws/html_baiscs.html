@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning HTML</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="main-heading">Headings</div>
+    <p>
+        <h1>Heading One</h1>
+        <h2>Heading Two</h2>
+        <h3>Heading Three</h3>
+        <h4>Heading Four</h4>
+        <h5>Heading Five</h5>
+        <h6>Heading Six</h6>
+    </p>
+    <div id="main-heading">HTML Table</div>
+    <p>
+        <table id="idTeams">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Captain</th>
+                    <th>Coach</th>
+                    <th>Flag</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>India</td>
+                    <td>Virat Kohli</td>
+                    <td>Ravi Shastri</td>
+                    <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="India" width="60" height="40"></td>
+                </tr>
+                <tr>
+                    <td>Australia</td>
+                    <td>Aaron Finch</td>
+                    <td>Justin Langer</td>
+                    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/1200px-Flag_of_Australia_%28converted%29.svg.png" alt="Australia" width="60" height="40"></td>
+                </tr>
+                <tr>
+                    <td>England</td>
+                    <td>Eoin Morgan</td>
+                    <td>Ashley Giles</td>
+                    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png" alt="England" width="60" height="40"></td>
+                </tr>
+                <tr>
+                    <td>New Zealand</td>
+                    <td>Kane Williamson</td>
+                    <td>Gary Stead</td>
+                    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Flag_of_New_Zealand.svg/1200px-Flag_of_New_Zealand.svg.png" alt="New Zealand" width="60" height="40"></td>
+                </tr>
+                <tr>
+                    <td>Pakistan</td>
+                    <td>Sarfaraz Ahmed</td>
+                    <td>Mickey Arthur</td>
+                    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/1200px-Flag_of_Pakistan.svg.png" alt="Pakistan" width="60" height="40"></td>
+                </tr>
+                <tr>
+                    <td>South Africa</td>
+                    <td>Faf du Plessis</td>
+                    <td>Ottis Gibson</td>
+                    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/1200px-Flag_of_South_Africa.svg.png" alt="South Africa" width="60" height="40"></td>
+            </tbody>
+        </table>
+    </p>
+    <div id="main-heading">List Items</div>
+    <p>
+        <h3>Top 6 countries (Cricket)</h3>
+        <ol>
+            <li>India</li>
+            <li>Australia</li>
+            <li>England</li>
+            <li>New Zealand</li>
+            <li>Pakistan</li>
+            <li>South Africa</li>
+        </ol>
+        <h3>Must read books</h3>
+        <ul>
+            <li>Rich Dad Poor Dad</li>
+            <li>Think and Grow Rich</li>
+            <li>How to win friends and influence people</li>
+            <li>Zero to One</li>
+            <li>Atomic Habits</li>
+            <li>7 Habits of Highly Effective People</li>
+        </ul>
+    </p>
+    <div id="main-heading">Images</div>
+    <p>
+        <img id="idFlag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/1200px-Flag_of_Australia_%28converted%29.svg.png" alt="Australia">
+        <img id="idFlag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png" alt="England">
+        <img id="idFlag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Flag_of_New_Zealand.svg/1200px-Flag_of_New_Zealand.svg.png" alt="New Zealand"> 
+        <img id="idFlag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/1200px-Flag_of_Pakistan.svg.png" alt="Pakistan">
+        <img id="idFlag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/1200px-Flag_of_South_Africa.svg.png" alt="South Africa">
+        <img id="idFlag" src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="India">
+    </p>
+
+    <div id="main-heading">Links</div>
+
+    <ul>
+        <li><a href="https://www.w3schools.com/html/html_links.asp" target="_blank">HTML Tutorial</a></li>
+        <li><a href="https://www.w3schools.com/css/css_selectors.asp" target="_blank">CSS Selectors</a></li>
+        <li><a href="https://www.w3schools.com/css/css_syntax.asp" target="_blank">CSS Syntax</a></li>  
+        <li><a href="https://www.w3schools.com/css/css_howto.asp" target="_blank">CSS How To</a></li>
+    </ul>
+    <div id="main-heading">Forms</div>
+    <p>
+        <form action="#" method="POST">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="John"><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="Doe"><br>
+            <br>
+            <label for="lname">Select Concepts:</label><br>
+            <input type="checkbox" name="technology1" value="HTML"> HTML<br />
+            <input type="checkbox" name="technology2" value="CSS"> CSS<br />
+            <input type="checkbox" name="technology3" value="Javascript"> Javascript<br />
+            <input type="checkbox" name="technology4" value="JQuery"> JQuery <br /><br />
+            <input type="submit" value="Submit">
+        </form>
+    </p>
+</body>
+</html>

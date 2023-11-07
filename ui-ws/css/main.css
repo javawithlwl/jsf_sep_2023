@@ -1,0 +1,32 @@
+#idTeams {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin: auto;
+}
+
+#idTeams td, #idTeams th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#idTeams th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+    text-align: left;
+    background-color: #191463;
+    color: white;
+}
+
+#main-heading{
+  background: crimson;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 25px;
+}
+#idFlag{
+    width: 100px;
+    height: 80px;
+    padding-right: 20px;
+}
