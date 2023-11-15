@@ -1,6 +1,6 @@
-const baseUrl = 'http://localhost:8080/api/contact';
+//const baseUrl = 'http://localhost:8080/api/contact';
 
-//const baseUrl = 'https://cbook-73zv.onrender.com/api/contact';
+const baseUrl = 'https://cbook-73zv.onrender.com/api/contact';
 
 const idSearch = document.getElementById('idSearch');
 const idAdd = document.getElementById('idAdd');
