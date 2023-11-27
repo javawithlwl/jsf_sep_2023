@@ -1,7 +1,7 @@
-package com.careerit.springcore.cbook.service;
+package com.careerit.cbook.service;
 
-import com.careerit.springcore.cbook.dao.ContactDao;
-import com.careerit.springcore.cbook.domain.Contact;
+import com.careerit.cbook.dao.ContactDao;
+import com.careerit.cbook.domain.Contact;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ContactServiceImpl implements ContactService{
+public class ContactServiceImpl implements ContactService {
 
     private final ContactDao contactDao;
     @Override

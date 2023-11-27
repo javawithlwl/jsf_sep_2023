@@ -1,6 +1,5 @@
-package com.careerit.springcore.cbook.dao;
-
-import com.careerit.springcore.cbook.domain.Contact;
+package com.careerit.cbook.dao;
+import com.careerit.cbook.domain.Contact;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -11,7 +10,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class ContactDaoImpl implements ContactDao{
+public class ContactDaoImpl implements ContactDao {
 
     private final JdbcTemplate jdbcTemplate;
     private static final String INSERT_CONTACT = "insert into contact(name,email,mobile) values(?,?,?)";

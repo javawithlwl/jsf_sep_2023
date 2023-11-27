@@ -1,7 +1,5 @@
-package com.careerit.springcore.cbook.service;
-
-import com.careerit.springcore.cbook.domain.Contact;
-
+package com.careerit.cbook.service;
+import com.careerit.cbook.domain.Contact;
 import java.util.List;
 
 public interface ContactService {
