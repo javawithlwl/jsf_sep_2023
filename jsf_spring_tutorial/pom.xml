@@ -12,6 +12,7 @@
 		<module>hello-world</module>
 		<module>cbook</module>
 		<module>learning-spring-data</module>
+		<module>iplstats</module>
 	</modules>
 
 </project>
