@@ -2,6 +2,8 @@ package com.careerit.iplstats.controller;
 
 
 import com.careerit.iplstats.domain.PlayerDetails;
+import com.careerit.iplstats.dto.CountryCountStats;
+import com.careerit.iplstats.dto.RoleAmountDto;
 import com.careerit.iplstats.dto.TeamAmountStatsDto;
 import com.careerit.iplstats.service.IplStatsService;
 import lombok.RequiredArgsConstructor;
@@ -28,10 +30,27 @@ public class IplStatsController {
     public ResponseEntity<List<TeamAmountStatsDto>> getTeamAmountStats(){
         return ResponseEntity.ok(iplStatsService.getTeamAmountStats());
     }
+    @GetMapping("/roleamountstats")
+    public ResponseEntity<List<RoleAmountDto>> getRoleAmountStats(){
+        return ResponseEntity.ok(iplStatsService.getRoleAmountStats());
+    }
 
     @GetMapping("/players/{teamName}")
     public ResponseEntity<List<PlayerDetails>> getPlayersOfTeam(@PathVariable("teamName") String teamName){
         return ResponseEntity.ok(iplStatsService.getPlayersOf(teamName));
     }
+    @GetMapping("/players")
+    public ResponseEntity<List<PlayerDetails>> getAllPlayers(){
+        return ResponseEntity.ok(iplStatsService.getAllPlayers());
+    }
+    @GetMapping("/countrycountstats")
+    public ResponseEntity<List<CountryCountStats>> getCountryCountStats(){
+        return ResponseEntity.ok(iplStatsService.getCountryCountStats());
+    }
+    @GetMapping("/countrycountstats/{teamName}/{roleName}")
+    public ResponseEntity<List<CountryCountStats>> getCountryCountStats(@PathVariable("teamName") String teamName,@PathVariable("roleName") String roleName){
+        return ResponseEntity.ok(iplStatsService.getCountryCountStats(teamName,roleName));
+    }
+
 
 }

@@ -5,6 +5,7 @@ import com.careerit.iplstats.dto.CountryCountStats;
 import com.careerit.iplstats.dto.RoleAmountDto;
 import com.careerit.iplstats.dto.TeamAmountStatsDto;
 import com.careerit.iplstats.repo.IplStatsRepo;
+import com.careerit.iplstats.service.exception.TeamNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,17 @@ public class IplStatsServiceImpl implements IplStatsService{
 
     @Override
     public List<RoleAmountDto> getRoleAmountStats() {
-        return null;
+        List<RoleAmountDto> roleAmountStats = iplStatsRepo.findRoleAmountStats();
+        log.info("Total role size is {} ",roleAmountStats.size());
+        return roleAmountStats;
+
     }
 
     @Override
     public List<CountryCountStats> getCountryCountStats() {
-        return null;
+        List<CountryCountStats> countryCountStats = iplStatsRepo.findCountryCountStats();
+        log.info("Total country size is {} ",countryCountStats.size());
+        return countryCountStats;
     }
 
     @Override
@@ -45,18 +51,36 @@ public class IplStatsServiceImpl implements IplStatsService{
     @Override
     public List<PlayerDetails> getPlayersOf(String teamName) {
         Assert.notNull(teamName,"Team name should not be null");
+        if(!iplStatsRepo.existsByTeamName(teamName)){
+            log.info("Team with name {} not found",teamName);
+            throw new TeamNotFoundException("Team with name "+teamName+" not found");
+        }
         List<PlayerDetails> playerDetails = iplStatsRepo.findByTeamName(teamName);
         log.info("Total players found for team {} is {}",teamName,playerDetails.size());
         return playerDetails;
     }
 
     @Override
-    public RoleAmountDto getRoleAmountStats(String teamName) {
-        return null;
+    public List<RoleAmountDto> getRoleAmountStats(String teamName) {
+        Assert.notNull(teamName,"Team name should not be null");
+        List<RoleAmountDto> roleAmountStats = iplStatsRepo.findRoleAmountOfTeam(teamName);
+        log.info("Total role size is {} ",roleAmountStats.size());
+        return roleAmountStats;
     }
 
     @Override
-    public CountryCountStats getCountryCountStats(String teamName, String roleName) {
-        return null;
+    public List<CountryCountStats> getCountryCountStats(String teamName, String roleName) {
+        Assert.notNull(teamName,"Team name should not be null");
+        Assert.notNull(roleName,"Role name should not be null");
+        List<CountryCountStats> countryCountStats = iplStatsRepo.findCountryCountStats(teamName, roleName);
+        log.info("With role {} and team {} has {} players",roleName,teamName,countryCountStats.size());
+        return countryCountStats;
+    }
+
+    @Override
+    public List<PlayerDetails> getAllPlayers() {
+        List<PlayerDetails> playerDetails = iplStatsRepo.findAll();
+        log.info("Total players found : {}",playerDetails.size());
+        return playerDetails;
     }
 }
