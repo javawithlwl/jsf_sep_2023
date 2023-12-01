@@ -13,6 +13,7 @@
 		<module>cbook</module>
 		<module>learning-spring-data</module>
 		<module>iplstats</module>
-	</modules>
+        <module>flyway-data-migration</module>
+    </modules>
 
 </project>
