@@ -14,6 +14,8 @@
 		<module>learning-spring-data</module>
 		<module>iplstats</module>
         <module>flyway-data-migration</module>
+		<module>student-course</module>
+		<module>spring-aop</module>
     </modules>
 
 </project>
