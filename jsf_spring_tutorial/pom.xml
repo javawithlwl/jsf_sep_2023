@@ -16,6 +16,7 @@
         <module>flyway-data-migration</module>
 		<module>student-course</module>
 		<module>spring-aop</module>
+		<module>wallet-server-app</module>
     </modules>
 
 </project>

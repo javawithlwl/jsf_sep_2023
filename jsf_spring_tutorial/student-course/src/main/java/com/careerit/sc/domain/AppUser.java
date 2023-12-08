@@ -23,8 +23,8 @@ public class AppUser {
     private String email;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_course",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
+            joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id",referencedColumnName = "id"))
     private List<Course> courses = new ArrayList<>();
 
     @OneToOne(mappedBy = "appUser")
